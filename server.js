@@ -8,6 +8,7 @@ const start = async () => {
   try {
     // sync({ alter: true }) оновлює таблиці, якщо ти змінив модель
     await sequelize.sync({ alter: true });
+    // await sequelize.sync({ force: true });
     console.log('✅ База даних синхронізована');
     
     app.listen(PORT, () => {

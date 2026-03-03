@@ -86,7 +86,8 @@ class TaskController {
     const { id } = req.params;
     console.log("Шукаємо задачу з ID:", id); // ДЕТЕКТОР 1
 
-    const task = await taskService.findById(id);
+    // taskController.js
+const task = await taskService.findById(id); // Це шукає запис у таблиці TASKS
     
     if (!task) {
       console.log("ЗАДАЧУ НЕ ЗНАЙДЕНО В БД!"); // ДЕТЕКТОР 2

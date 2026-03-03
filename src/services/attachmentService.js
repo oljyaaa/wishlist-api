@@ -1,10 +1,11 @@
+// src/services/attachmentService.js
+
 const { Attachment } = require('../models');
 
 class AttachmentService {
   async bulkCreate(files, taskId) {
-    // Важливо: переконайся, що назви полів співпадають з твоєю моделлю
     const attachmentsData = files.map(file => ({
-      taskId: file.taskId,
+      taskId: taskId, // <--- БУЛО: file.taskId (помилка), СТАЛО: taskId (з аргументу функції)
       filename: file.filename,
       path: file.path,
       mimetype: file.mimetype,
