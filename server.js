@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 
 const start = async () => {
   try {
-    // sync({ alter: true }) оновлює таблиці, якщо ти змінив модель
+    // sync({ alter: true }) 
     await sequelize.sync({ alter: true });
     // await sequelize.sync({ force: true });
     console.log('✅ База даних синхронізована');

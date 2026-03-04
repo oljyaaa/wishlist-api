@@ -23,7 +23,6 @@ class TaskController {
     }
   }
 
-  // Залишаємо тільки цей метод getOne, бо він розширений (з картинками)
   async getOne(req, res, next) {
     try {
       const { id } = req.params;
@@ -31,13 +30,11 @@ class TaskController {
       
       if (!task) {
         const error = new Error('Бажання не знайдено');
-        error.status = 404; // Обов'язково додаємо статус для errorHandler
+        error.status = 404;
         throw error;
       }
       
       const attachments = await attachmentService.getByTaskId(id);
-      
-      // Повертаємо об'єкт задачі разом з масивом вкладень
       res.json({ 
         ...task.toJSON(), 
         attachments 
@@ -84,19 +81,18 @@ class TaskController {
   async uploadAttachments(req, res, next) {
   try {
     const { id } = req.params;
-    console.log("Шукаємо задачу з ID:", id); // ДЕТЕКТОР 1
+    console.log("Шукаємо задачу з ID:", id); 
 
-    // taskController.js
-const task = await taskService.findById(id); // Це шукає запис у таблиці TASKS
+const task = await taskService.findById(id); 
     
     if (!task) {
-      console.log("ЗАДАЧУ НЕ ЗНАЙДЕНО В БД!"); // ДЕТЕКТОР 2
+      console.log("ЗАДАЧУ НЕ ЗНАЙДЕНО В БД!"); 
       const error = new Error('Бажання не знайдено');
       error.status = 404;
       throw error;
     }
 
-    console.log("Завантажені файли:", req.files); // ДЕТЕКТОР 3
+    console.log("Завантажені файли:", req.files); 
 
     if (!req.files || req.files.length === 0) {
       return res.status(400).json({ error: 'Файли не завантажено' });

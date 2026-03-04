@@ -29,7 +29,7 @@ const Attachment = sequelize.define('Attachment', {
   size: { type: DataTypes.INTEGER }
 });
 
-// --- ЗВ'ЯЗКИ (Associations) ---
+// --- ЗВ'ЯЗКИ ---
 
 // User 1 — N Tasks
 User.hasMany(Task, { foreignKey: 'userId', onDelete: 'CASCADE' });

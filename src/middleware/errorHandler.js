@@ -1,7 +1,7 @@
 const { ZodError } = require('zod');
 
 const errorHandler = (err, req, res, next) => {
-  console.error(err); // Логуємо в консоль для себе
+  console.error(err); 
 
   // 1. Помилка валідації Zod
   if (err instanceof ZodError) {
@@ -14,7 +14,7 @@ const errorHandler = (err, req, res, next) => {
     });
   }
 
-  // 2. Помилка "Не знайдено" (яку ми кидали вручну)
+  // 2. Помилка "Не знайдено" 
   if (err.status === 404) {
     return res.status(404).json({ error: err.message });
   }

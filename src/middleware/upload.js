@@ -2,13 +2,12 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-// Переконуємось, що папка існує
 const uploadDir = 'uploads';
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }
 
-// 1. Налаштування сховища (Куди і Як зберігати)
+// 1. Налаштування сховища 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, uploadDir); // Папка збереження

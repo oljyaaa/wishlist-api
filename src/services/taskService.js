@@ -16,13 +16,10 @@ class TaskService {
       page = 1, limit = 10 
     } = filters;
 
-    // 1. Формуємо умову WHERE
     const where = {};
     
     if (status) where.status = status;
     if (priority) where.priority = priority;
-    
-    // Пошук по назві АБО опису (LIKE)
     if (search) {
       where[Op.or] = [
         { title: { [Op.like]: `%${search}%` } },
@@ -36,7 +33,7 @@ class TaskService {
     // 3. Запит до БД
     return await Task.findAndCountAll({
       where,
-      order: [[sort, order.toUpperCase()]], // Напр. [['priority', 'ASC']]
+      order: [[sort, order.toUpperCase()]],
       limit: parseInt(limit),
       offset: parseInt(offset),
       // include: [{ model: User, attributes: ['name'] }] // Можна додати автора
@@ -51,7 +48,7 @@ class TaskService {
   // Оновити
   async update(id, data) {
     const task = await this.findById(id);
-    if (!task) return null; // Якщо не знайдено — повертаємо null
+    if (!task) return null; 
     
     return await task.update(data);
   }
@@ -62,7 +59,7 @@ class TaskService {
     if (!task) return null;
 
     await task.destroy();
-    return true; // Повертаємо true, якщо видалення успішне
+    return true;
   }
 }
 

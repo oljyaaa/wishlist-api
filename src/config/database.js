@@ -8,7 +8,7 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: 'mysql',
-    logging: false, // щоб не засмічувати консоль SQL-запитами
+    logging: false, 
   }
 );
 
